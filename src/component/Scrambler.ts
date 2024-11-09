@@ -7,7 +7,7 @@ export const Scrambler = () => {
         'U\'', 'D\'', 'B\'', 'F\'', 'L\'', 'R\'',
         'U2', 'D2', 'B2', 'F2', 'L2', 'R2'
     ];
-    const length = 2;
+    const length = 25;
 
     const [ currScramble, setCurrScramble ] = useState<string[]>([]);
 
