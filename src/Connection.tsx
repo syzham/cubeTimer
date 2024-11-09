@@ -6,7 +6,7 @@ interface props {
 }
 
 function Connection(props: props) {
-    const { connect, moves } = GanCube();
+    const { connect, moves, connected } = GanCube();
 
     const scramble = props.scramble(moves);
     return (
@@ -14,7 +14,7 @@ function Connection(props: props) {
             <h4>{scramble != '' && ('Scramble: '+scramble) } </h4>
             <p>curr Move: {moves[moves.length - 1]}</p>
             <p>prev Move: {moves.join(' ')}</p> <br/>
-            <button onClick={connect}> {props.value} </button>
+            {!connected && <button onClick={connect}> {props.value} </button>}
         </>
     )
 }

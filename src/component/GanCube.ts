@@ -3,14 +3,22 @@ import {useState} from "react";
 
 export const GanCube = () => {
     const [moves, setMoves] = useState<string[]>([]);
+    const [connected, setConnected] = useState<boolean>(false);
 
     const connect = async () => {
         const conn: GanCubeConnection = await connectGanCube();
         conn.events$.subscribe((event) => {
-            if (event.type == "FACELETS") {
-                //console.log("Cube facelets state", event.facelets);
-            } else if (event.type == "MOVE") {
-                moveEvent(event.move);
+            switch (event.type) {
+                case "FACELETS":
+                    if (!connected) setConnected(true);
+                    break;
+
+                case "MOVE":
+                    moveEvent(event.move);
+                    break;
+
+                case "DISCONNECT":
+                    setConnected(false);
             }
         });
     };
@@ -22,9 +30,7 @@ export const GanCube = () => {
         })
     };
 
-
-
-    return { connect, moves };
+    return { connect, connected, moves };
 }
 
 export const combineTwoMoves = (firstMove: string, secondMove: string): string[] => {
