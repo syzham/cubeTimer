@@ -24,6 +24,7 @@ export const Scrambler = () => {
     };
 
     const getDisplayScramble = (currentMoves: string[]): string => {
+        if (currScramble.length == 0) return '-';
         let redo: string = '';
         let i = 0;
         let anyMistakes: boolean = false;

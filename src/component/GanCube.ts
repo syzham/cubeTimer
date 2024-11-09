@@ -30,7 +30,11 @@ export const GanCube = () => {
         })
     };
 
-    return { connect, connected, moves };
+    const resetMoves = (): void => {
+        setMoves([]);
+    }
+
+    return { connect, connected, moves, resetMoves };
 }
 
 export const combineTwoMoves = (firstMove: string, secondMove: string): string[] => {
@@ -49,7 +53,9 @@ export const combineTwoMoves = (firstMove: string, secondMove: string): string[]
 }
 
 export const inverse = (move: string): string => {
-    if (move.length == 2)
+    if (move === undefined || move == '')
+        return '';
+    else if (move.length == 2)
         return move[1] == '2' ? move : move[0];
     else
         return move + "'";
