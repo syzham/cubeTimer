@@ -8,7 +8,7 @@ interface props {
 }
 
 function Connection(props: props) {
-    const { connect, moves, connected, resetMoves } = GanCube();
+    const { connect, moves, connected, resetMoves, isSolved} = GanCube();
     const {getTime, toggleTimer} = Timer();
     const [isScrambled, setIsScrambled] = useState<boolean>(false);
 
@@ -16,14 +16,18 @@ function Connection(props: props) {
 
     useEffect(() => {
         if (scramble == '' && !isScrambled) {
-            console.log("Triggered");
             setIsScrambled(true);
             resetMoves();
         }
         if (moves.length == 1 && isScrambled) {
             toggleTimer();
         }
-    }, [scramble, moves]);
+
+        if (isSolved && isScrambled) {
+            toggleTimer();
+            setIsScrambled(false);
+        }
+    }, [scramble, moves, isSolved]);
 
     return (
         <>

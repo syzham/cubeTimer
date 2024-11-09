@@ -4,6 +4,8 @@ import {useState} from "react";
 export const GanCube = () => {
     const [moves, setMoves] = useState<string[]>([]);
     const [connected, setConnected] = useState<boolean>(false);
+    const [isSolved, setIsSolved] = useState<boolean>(false);
+    const solvedState = 'UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB';
 
     const connect = async () => {
         const conn: GanCubeConnection = await connectGanCube();
@@ -11,6 +13,7 @@ export const GanCube = () => {
             switch (event.type) {
                 case "FACELETS":
                     if (!connected) setConnected(true);
+                    setIsSolved(event.facelets == solvedState);
                     break;
 
                 case "MOVE":
@@ -34,7 +37,7 @@ export const GanCube = () => {
         setMoves([]);
     }
 
-    return { connect, connected, moves, resetMoves };
+    return { connect, connected, moves, resetMoves, isSolved };
 }
 
 export const combineTwoMoves = (firstMove: string, secondMove: string): string[] => {
