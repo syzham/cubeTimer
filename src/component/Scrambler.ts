@@ -12,7 +12,6 @@ export const Scrambler = () => {
     const [ currScramble, setCurrScramble ] = useState<string[]>([]);
 
     const scramble = (): void => {
-        setCurrScramble([]);
         let face: number = 0;
         const scram: string[] = []
         while (scram.length < length) {

@@ -16,8 +16,12 @@ export const Timer = () => {
         return () => clearInterval(timer);
     }, [startTimer]);
 
-    const toggleTimer = () => {
-        setStartTimer(prevState => !prevState);
+    const toggleTimer = (state: boolean) => {
+        setStartTimer(state);
+    }
+
+    const resetTimer = (): void => {
+        setTime(0);
     }
 
     const getTime = () => {
@@ -27,5 +31,5 @@ export const Timer = () => {
         return (minutes == 0 ? `` : `${String(minutes).padStart(2, '0')}:`)+`${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;
     }
 
-    return {getTime, toggleTimer};
+    return {getTime, toggleTimer, resetTimer};
 }

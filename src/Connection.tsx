@@ -5,11 +5,12 @@ import {useEffect, useState} from "react";
 interface props {
     value: string;
     scramble: (currentMoves: string[]) => string;
+    solved: () => void;
 }
 
 function Connection(props: props) {
     const { connect, moves, connected, resetMoves, isSolved} = GanCube();
-    const {getTime, toggleTimer} = Timer();
+    const {getTime, toggleTimer, resetTimer} = Timer();
     const [isScrambled, setIsScrambled] = useState<boolean>(false);
 
     const scramble:string = isScrambled ? '' : props.scramble(moves);
@@ -20,12 +21,15 @@ function Connection(props: props) {
             resetMoves();
         }
         if (moves.length == 1 && isScrambled) {
-            toggleTimer();
+            toggleTimer(true);
+            resetTimer();
         }
 
         if (isSolved && isScrambled) {
-            toggleTimer();
+            toggleTimer(false);
+            resetMoves();
             setIsScrambled(false);
+            props.solved();
         }
     }, [scramble, moves, isSolved]);
 
