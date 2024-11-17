@@ -1,4 +1,5 @@
 import './App.css'
+import './css/GridItems.css'
 import Connection from './Connection'
 import {Scrambler} from "./component/Scrambler.ts";
 import {useEffect, useState} from "react";
@@ -20,15 +21,15 @@ function App() {
 
     return (
         <>
-            <div>
+            <div className={`grid-container layout-${numberOFSolvers}`}>
                 {Array.from({length: numberOFSolvers}, (_, index) => (
-                    <Connection key={index} value={"Connect Cube"} scramble={getDisplayScramble}
-                                solved={() => handleSolvedConnection(index)}/>
+                    <div className={'grid-item'}><Connection key={index} value={"Connect Cube"} scramble={getDisplayScramble}
+                                     solved={() => handleSolvedConnection(index)}/></div>
                     ))}
             </div>
-                <script type={"module"} src={"Connection.tsx"}></script>
-            </>
-            )
-            }
+            <script type={"module"} src={"Connection.tsx"}></script>
+        </>
+    )
+    }
 
 export default App
