@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {inverse, combineTwoMoves} from "./GanCube.ts";
+import {combineTwoMoves, inverse} from "../utils/cubeUtils.ts";
 
-export const Scrambler = () => {
+export const useScrambler = () => {
     const possibleMoves: string[] = [
         'U', 'D', 'B', 'F', 'L', 'R',
         'U\'', 'D\'', 'B\'', 'F\'', 'L\'', 'R\'',

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
 
-export const Timer = () => {
+export const useTimer = () => {
     const [time, setTime] = useState<number>(0);
     const [startTimer, setStartTimer] = useState<boolean>(false);
 

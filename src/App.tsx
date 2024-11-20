@@ -1,11 +1,11 @@
 import './App.css'
-import Connection from './Connection'
-import {Scrambler} from "./component/Scrambler.ts";
+import Connection from './components/Connection/Connection.tsx'
+import {useScrambler} from "./hooks/useScrambler.ts";
 import {useEffect, useState} from "react";
 
 function App() {
     const numberOFSolvers = 1;
-    const {scramble, getDisplayScramble} = Scrambler();
+    const {scramble, getDisplayScramble} = useScrambler();
     const [solvedConnection, setSolvedConnection] = useState<boolean[]>(Array(numberOFSolvers).fill(false));
 
     useEffect(() => {if (solvedConnection.every(status => status || !status)) scramble()}, [solvedConnection]);

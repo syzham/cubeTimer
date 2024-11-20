@@ -1,5 +1,5 @@
-import {GanCube} from "./component/GanCube.ts";
-import {Timer} from "./component/Timer.ts";
+import {useGanCube} from "../../hooks/useGanCube.ts";
+import {useTimer} from "../../hooks/useTimer.ts";
 import {useEffect, useState} from "react";
 
 interface props {
@@ -9,8 +9,8 @@ interface props {
 }
 
 function Connection(props: props) {
-    const { connect, moves, connected, resetMoves, isSolved} = GanCube();
-    const {getTime, toggleTimer, resetTimer} = Timer();
+    const { connect, moves, connected, resetMoves, isSolved} = useGanCube();
+    const {getTime, toggleTimer, resetTimer} = useTimer();
     const [isScrambled, setIsScrambled] = useState<boolean>(false);
 
     const scramble:string = isScrambled ? '' : props.scramble(moves);
