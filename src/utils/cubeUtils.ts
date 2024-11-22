@@ -21,3 +21,11 @@ export const inverse = (move: string): string => {
     else
         return move + "'";
 }
+
+export const possibleMoves: string[] = [
+    'U', 'D', 'B', 'F', 'L', 'R',
+    'U\'', 'D\'', 'B\'', 'F\'', 'L\'', 'R\'',
+    'U2', 'D2', 'B2', 'F2', 'L2', 'R2'
+];
+
+export const solvedState = 'UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB';

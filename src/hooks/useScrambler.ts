@@ -1,12 +1,8 @@
 import {useState} from "react";
-import {combineTwoMoves, inverse} from "../utils/cubeUtils.ts";
+import {combineTwoMoves, inverse, possibleMoves} from "../utils/cubeUtils.ts";
 
 export const useScrambler = () => {
-    const possibleMoves: string[] = [
-        'U', 'D', 'B', 'F', 'L', 'R',
-        'U\'', 'D\'', 'B\'', 'F\'', 'L\'', 'R\'',
-        'U2', 'D2', 'B2', 'F2', 'L2', 'R2'
-    ];
+
     const length = 25;
 
     const [ currScramble, setCurrScramble ] = useState<string[]>([]);

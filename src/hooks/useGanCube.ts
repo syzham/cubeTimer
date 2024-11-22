@@ -1,12 +1,11 @@
 import {connectGanCube, GanCubeConnection} from "gan-web-bluetooth";
 import {useState} from "react";
-import {combineTwoMoves} from "../utils/cubeUtils.ts";
+import {combineTwoMoves, solvedState} from "../utils/cubeUtils.ts";
 
 export const useGanCube = () => {
     const [moves, setMoves] = useState<string[]>([]);
     const [connected, setConnected] = useState<boolean>(false);
     const [isSolved, setIsSolved] = useState<boolean>(false);
-    const solvedState = 'UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB';
 
     const connect = async () => {
         const conn: GanCubeConnection = await connectGanCube();
