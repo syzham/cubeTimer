@@ -22,6 +22,20 @@ export const inverse = (move: string): string => {
         return move + "'";
 }
 
+export const solve = async (moves: string) => {
+    const response = await fetch('http://127.0.0.1:5000/solve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ facelet: moves , solved: solvedState })
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return await response.text(); // Parse JSON response
+}
+
 export const possibleMoves: string[] = [
     'U', 'D', 'B', 'F', 'L', 'R',
     'U\'', 'D\'', 'B\'', 'F\'', 'L\'', 'R\'',
